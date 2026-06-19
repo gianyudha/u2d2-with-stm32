@@ -2,9 +2,7 @@
 
 A low-cost USB-to-Dynamixel bridge built on an STM32F411CEU6 (BlackPill) board. Acts as a transparent USB CDC ↔ Single-Wire Half-Duplex UART bridge for controlling DYNAMIXEL servos (e.g. MX-28T) at **1 Mbps, Protocol 2.0** from a PC — a functional replacement for the ROBOTIS U2D2.
 
-Works with **DYNAMIXEL Wizard 2.0**, **DYNAMIXEL SDK**, and **ROS / ROS 2**.
-
-> **Cost:** ~1 BlackPill + a couple of resistors, vs a commercial U2D2.
+Works with **DYNAMIXEL Wizard 2.0**
 
 ---
 
@@ -39,13 +37,13 @@ The STM32 is a **transparent bridge**: all DYNAMIXEL protocol logic stays on the
 
 ### 3. Pin Config
 
-| Pin STM32F411 | Pin Dynamixel MX-28T | Hubungan Elektrikal / Komponen Tambahan | Fungsi |
+| STM32F411 Pin | Dynamixel MX-28T Pin | Electrical Connection / External Component | Function |
 | :--- | :--- | :--- | :--- |
-| **5V** | — | Terhubung ke kaki atas **Resistor 1k$\Omega$** | Sumber tegangan pembantu (*Pull-Up Bias*) |
-| **PA9** | **DATA** (Kabel Putih) | Terhubung ke kaki bawah **Resistor 1k$\Omega$** | Jalur komunikasi utama (Half-Duplex Open-Drain) |
-| **PA10** | — | **JANGAN DIHUBUNGKAN / BIARKAN KOSONG** | Dinonaktifkan oleh software |
-| **GND** | **GND** (Kabel Hitam) | Terhubung langsung ke **GND (-) Adaptor 12V** | *Common Ground* (Wajib menyatu agar referensi data stabil) |
-| — | **VCC** (Kabel Merah) | Terhubung ke **(+) 12V Adaptor** melalui **Sakelar ON/OFF** | Sumber daya utama motor servo |
+| **3.3V** | — | Connected to the top terminal of the **4.7k Ω Resistor** | Pull-up voltage bias source |
+| **PA9** | **DATA** (White/Yellow) | Connected to the bottom terminal of the **4.7k Ω Resistor** | Main data line (Half-Duplex Open-Drain) |
+| **GND** | **GND** (Black) | Tied directly to the **GND (-) of the 12V Adaptor** | Common Ground (Mandatory for signal reference) |
+| — | **VCC** (Red) | Connected to **(+) 12V Adaptor** via an **ON/OFF Switch** | Main actuator power supply |
+
 
 ### ⚠️ Critical Hardware Notes (learned the hard way)
 
