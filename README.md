@@ -35,7 +35,7 @@ The STM32 is a **transparent bridge**: all DYNAMIXEL protocol logic stays on the
 | 3-pin DYNAMIXEL cable | 1 | To servo |
 | ST-Link V2 | 1 | For flashing |
 
-### 3. Pin Config
+### Pin Config
 
 | STM32F411 Pin | Dynamixel MX-28T Pin | Electrical Connection / External Component | Function |
 | :--- | :--- | :--- | :--- |
@@ -112,8 +112,7 @@ uint8_t uart_rx_buf[RX_BUF_SIZE];
 uint8_t uart_tx_buf[TX_BUF_SIZE];
 volatile uint8_t tx_active = 0;
 ```
-> Buffer size matters: 256 bytes was too small for full control-table reads and caused intermittent timeouts. 1024 is safe (512 also works).
-
+> Buffer size matters: 256 bytes was too small for full control-table reads and caused intermittent timeouts. 1024 is safe.
 ### Startup (`main.c`, USER CODE BEGIN 2)
 ```c
 HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_buf, RX_BUF_SIZE);
