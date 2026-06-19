@@ -226,7 +226,7 @@ Also add `#include "usbd_cdc_if.h"` to `main.c` and `extern UART_HandleTypeDef h
 | `implicit declaration of CDC_Transmit_FS` | Missing include | `#include "usbd_cdc_if.h"` in `main.c` |
 | Scan finds servo, but read times out | RX buffer too small / `FLUSH_DRREGISTER` dropping first byte | Use 1024 buffer; do **not** flush DR in TxCplt |
 | Intermittent timeouts at 1 Mbps | Idle line ~4.5 V (5 V pull-up) | Move pull-up to 3.3 V |
-| BlackPill dies when servo active | 5 V pull-up clamp-diode stress + no series resistor | 3.3 V pull-up + 100 Ω series + solid common GND |
+| BlackPill dies when servo active | 5 V pull-up clamp-diode stress + no series resistor | 3.3 V pull-up + solid common GND |
 | Deadlock / corruption under load | USB ISR preempting UART ISR | Set USB NVIC priority *below* UART/DMA |
 
 ---
