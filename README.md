@@ -47,7 +47,7 @@ The STM32 is a **transparent bridge**: all DYNAMIXEL protocol logic stays on the
 
 ### ⚠️ Critical Hardware Notes (learned the hard way)
 
-These two points destroyed a BlackPill during development. Do not skip them.
+These three points destroyed a BlackPill during development. Do not skip them.
 
 1. **Pull-up MUST go to 3.3 V, not 5 V.**
    PA9 is 5 V-tolerant *statically*, but a 5 V pull-up keeps the internal clamp diode conducting (idle reads ~4.5–4.8 V instead of 5 V). Under switching + servo current draw, transient spikes exceed the absolute max and the clamp diode eventually fails — killing the chip. With a 3.3 V pull-up the diode never conducts. MX-28T logic-high threshold is ~2 V, so 3.3 V is more than enough.
