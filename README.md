@@ -235,7 +235,7 @@ Also add `#include "usbd_cdc_if.h"` to `main.c` and `extern UART_HandleTypeDef h
 
 - **Single-Wire Half-Duplex needs no external direction-control IC** (no 74HC126 / MAX485). The STM32 handles TX/RX direction internally; PA9 goes high-Z when not transmitting.
 - **MX-28T is TTL** ("T"), not RS-485 ("R") — no transceiver IC required.
-- The biggest risks here are **electrical, not firmware**: a 5 V pull-up and a missing series resistor cost one BlackPill and one servo during development. Protect the data pin.
+- The biggest risks here are **electrical, not firmware**: a 5 V pull-up and a missing series resistor cost one BlackPill during development. Protect the data pin.
 - Recovery/bootloader mode has much stricter timing than normal operation; a DIY bridge may handle normal comms perfectly yet struggle with firmware recovery.
 
 ---
