@@ -37,21 +37,15 @@ The STM32 is a **transparent bridge**: all DYNAMIXEL protocol logic stays on the
 | 3-pin DYNAMIXEL cable | 1 | To servo |
 | ST-Link V2 | 1 | For flashing |
 
-### Pin Configuration
+### 3. Pin Config
 
-| NO | PIN | NAME | CONF | MODE | FUNC | NOTE |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--|
-| 1 | PA9 | USART1_TX | AF / Open-Drain | NO PULL | DYNAMIXEL | Single-wire half-duplex data; ext. 4.7 kΩ pull-up to **3.3 V** |
-| 2 | PC13 | LED | OUT | LOW | LED | Onboard heartbeat (toggles on TX complete; optional) |
-| 3 | — | HSE | — | 25 MHz | CLOCK | Crystal → 48 MHz exact for USB |
-
-### Servo / Power Connection
-
-| FROM | VIA | TO | NOTE |
-|:--|:--:|:--|:--|
-| PA9 | 4.7 kΩ pull-up to 3.3 V | DATA (middle pin MX-28T) | Protection mandatory |
-| 12 V (+) | — | VDD (servo power pin) | Separate supply, ≥2 A |
-| GND | common node | BlackPill GND + Servo GND + 12 V GND | **Single solid point**, thick/short wire |
+| Pin STM32F411 | Pin Dynamixel MX-28T | Hubungan Elektrikal / Komponen Tambahan | Fungsi |
+| :--- | :--- | :--- | :--- |
+| **5V** | — | Terhubung ke kaki atas **Resistor 1k$\Omega$** | Sumber tegangan pembantu (*Pull-Up Bias*) |
+| **PA9** | **DATA** (Kabel Putih) | Terhubung ke kaki bawah **Resistor 1k$\Omega$** | Jalur komunikasi utama (Half-Duplex Open-Drain) |
+| **PA10** | — | **JANGAN DIHUBUNGKAN / BIARKAN KOSONG** | Dinonaktifkan oleh software |
+| **GND** | **GND** (Kabel Hitam) | Terhubung langsung ke **GND (-) Adaptor 12V** | *Common Ground* (Wajib menyatu agar referensi data stabil) |
+| — | **VCC** (Kabel Merah) | Terhubung ke **(+) 12V Adaptor** melalui **Sakelar ON/OFF** | Sumber daya utama motor servo |
 
 ### ⚠️ Critical Hardware Notes (learned the hard way)
 
