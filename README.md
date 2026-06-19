@@ -11,10 +11,10 @@ Works with **DYNAMIXEL Wizard 2.0**, **DYNAMIXEL SDK**, and **ROS / ROS 2**.
 ## How It Works
 
 ```
-┌─────────┐   USB    ┌──────────────────┐  Single-Wire   ┌──────────┐
+┌─────────┐   USB    ┌──────────────────────┐  Single-Wire ┌──────────┐
 │   PC    │◄───────► │  STM32F411 BlackPill │  Half-Duplex │  MX-28T  │
 │ (Ubuntu)│  CDC VCP │  USB CDC ↔ USART1    │◄───────────► │  Servo   │
-└─────────┘          └──────────────────┘   TTL 1 Mbps    └──────────┘
+└─────────┘          └──────────────────────┘   TTL 1 Mbps └──────────┘
 ```
 
 The STM32 is a **transparent bridge**: all DYNAMIXEL protocol logic stays on the PC. The firmware only forwards bytes between the USB Virtual COM Port and the single-wire UART bus, handling the half-duplex direction switching internally.
