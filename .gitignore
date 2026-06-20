@@ -1,0 +1,18 @@
+# Build directories
+Debug/
+Release/
+bin/
+obj/
+
+# Toolchain and temporary files
+*.o
+*.d
+*.su
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+
+# IDE specific
+.settings/
